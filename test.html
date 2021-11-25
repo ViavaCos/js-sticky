@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <style>
+    .wrap {
+      width: 500px;
+      overflow: auto;
+    }
+    .stick-element {background-color: #666;}
+  </style>
+
+  <div class="wrap">
+    <table class="stick_table" border="1">
+      <thead>
+        <tr>
+          <th class="stick-element lt">标题1</th>
+          <th>标题2</th>
+          <th>标题3</th>
+          <th>标题4</th>
+          <th>标题5</th>
+          <th>标题6</th>
+          <th>标题1</th>
+          <th>标题2</th>
+          <th>标题3</th>
+          <th>标题4</th>
+          <th>标题5</th>
+          <th class="stick-element rt">标题6</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="stick-element lt">asdad1</td>
+          <td>asdad2</td>
+          <td>asdad3</td>
+          <td>asdad4</td>
+          <td>asdad5</td>
+          <td>asdad6</td>
+          <td>asdad1</td>
+          <td>asdad2</td>
+          <td>asdad3</td>
+          <td>asdad4</td>
+          <td>asdad5</td>
+          <td class="stick-element rt">asdad6</td>
+        </tr>
+        <tr>
+          <td class="stick-element lt">asdad1</td>
+          <td>asdad2</td>
+          <td>asdad3</td>
+          <td>asdad4</td>
+          <td>asdad5</td>
+          <td>asdad6</td>
+          <td>asdad1</td>
+          <td>asdad2</td>
+          <td>asdad3</td>
+          <td>asdad4</td>
+          <td>asdad5</td>
+          <td class="stick-element rt">asdad6</td>
+        </tr>
+        <tr>
+          <td class="stick-element lt">asdad1</td>
+          <td>asdad2</td>
+          <td>asdad3</td>
+          <td>asdad4</td>
+          <td>asdad5</td>
+          <td>asdad6</td>
+          <td>asdad1</td>
+          <td>asdad2</td>
+          <td>asdad3</td>
+          <td>asdad4</td>
+          <td>asdad5</td>
+          <td class="stick-element rt">asdad6</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <script>
+    function init(){
+      $('.wrap').on('scroll', function(event){
+        // console.dir(event.target);
+        // console.log($('.stick_table').scrollLeft());
+        // var leftOffset = event.target.scrollLeft
+        // var wrapWidth =  event.target.offsetWidth
+        // var tableWidth = $('.stick_table').width()
+        // var offsetRight = tableWidth - wrapWidth - leftOffset
+        
+        // console.log(event.target.scrollTop, event.target.scrollLeft, wrapWidth, tableWidth);
+        // $('.stick-element.lt').css('position', 'relative').css('left', leftOffset + 'px')
+        // $('.stick-element.rt').css('position', 'relative').css('right', offsetRight + 'px')
+
+        setSticky(event.target)
+      })
+    }
+    setSticky($('.wrap')[0])
+    init()
+
+    function setSticky(target){
+      var leftOffset = target.scrollLeft
+      var wrapWidth =  target.offsetWidth
+      var tableWidth = $('.stick_table').width()
+      var offsetRight = tableWidth - wrapWidth - leftOffset
+      
+      console.log(target.scrollTop, target.scrollLeft, wrapWidth, tableWidth);
+      $('.stick-element.lt').css('position', 'relative').css('left', leftOffset + 'px')
+      $('.stick-element.rt').css('position', 'relative').css('right', offsetRight + 'px')
+    }
+  </script>
+</body>
+
+</html>

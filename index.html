@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <style>
+    .main{
+      width: 700px;
+      height: 500px;
+      margin: 50px auto;
+      overflow: auto;
+      background-color: #f2f2f2;
+    }
+    .scroll_wrap {
+      width: 1200px;
+      height: 20px;
+      background-color: lightgreen;
+    }
+    .sticky-warp{ width: 150px;height: 50px; background-color: red; left: 50px; }
+  </style>
+
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <div class="main" style="position: relative;">
+    <!-- 用来产生滚动条的无关元素 -->
+    <div class="scroll_wrap" style="display: flex; align-items: center; justify-content: center;">
+      <div style="width: 50px; height: 20px; background-color: rgb(100, 100, 100);"></div>
+      <div style="width: 50px; height: 20px; background-color: rgb(15, 100, 100);"></div>
+      <div style="width: 50px; height: 20px; background-color: rgb(100, 232, 100);"></div>
+      <div style="width: 50px; height: 20px; background-color: rgb(100, 12, 100);"></div>
+    </div>
+
+    <!-- 相关元素 -->
+    <div class="sticky" style="left:0;">
+      <div class="sticky-warp">
+        <h2 style="text-align: center; line-height: 50px;">Sticky Dom</h2>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // getPosition() // 设置定位
+    // init()
+
+
+    function getPosition() {
+      var position = cssSupport('position', 'sticky') ? 'sticky' : 'relative';
+      $('.sticky').css('position', position)
+    }
+
+    function cssSupport(attr, value) {
+      var element = document.createElement('div');
+      if (attr in element.style) {
+        element.style[attr] = value;
+        return element.style[attr] === value;
+      } else {
+        return false;
+      }
+    }
+
+    function getNumberValue(pxValue){
+      var value = String(pxValue).match(/^\-?\+?[0-9]+/g);
+      return value ? Number(value) : undefined;
+    }
+
+    function addScrollListen(target, cb){
+      target.addEventListener('scroll', function (event) {
+        cb && cb(event);
+      });
+    }
+
+    function init(){
+      if (cssSupport('position', 'sticky')) {
+        return;
+      }
+      var el = document.querySelector('.sticky')
+      var target = el.parentNode
+      var elWarp = el.querySelector('.sticky-warp')
+      var left = getNumberValue(document.defaultView.getComputedStyle(el).left)
+
+      console.log(1, el);
+      console.log(2, target);
+      console.log(3, elWarp);-
+      console.log(4, left);
+
+      addScrollListen(target, function(event) {
+        console.log(10086, left, el.getBoundingClientRect().left)
+        if (el.getBoundingClientRect().left <= left) {
+          elWarp.style.position = 'fixed';
+        }
+        if (el.getBoundingClientRect().left >= 0 && elWarp.style.position != 'absolute') {
+          elWarp.style.position = 'absolute';
+        }
+      })
+    }
+
+  </script>
+</body>
+
+</html>
