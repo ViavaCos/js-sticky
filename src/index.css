@@ -1,0 +1,20 @@
+.main {
+  width: 700px;
+  height: 500px;
+  margin: 50px auto;
+  overflow: auto;
+  background-color: #f2f2f2;
+}
+
+.scroll_wrap {
+  width: 1200px;
+  height: 20px;
+  background-color: lightgreen;
+}
+
+.sticky-warp {
+  width: 150px;
+  height: 50px;
+  background-color: red;
+  left: 50px;
+}

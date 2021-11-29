@@ -18,7 +18,7 @@
   </style>
 
   <div class="wrap">
-    <table class="stick_table" border="1">
+    <table class="stick_table" border="1" cellspacing="0">
       <thead>
         <tr>
           <th class="stick-element lt">标题1</th>
@@ -110,7 +110,7 @@
       var tableWidth = $('.stick_table').width()
       var offsetRight = tableWidth - wrapWidth - leftOffset
       
-      console.log(target.scrollTop, target.scrollLeft, wrapWidth, tableWidth);
+      // console.log(target.scrollTop, target.scrollLeft, wrapWidth, tableWidth);
       $('.stick-element.lt').css('position', 'relative').css('left', leftOffset + 'px')
       $('.stick-element.rt').css('position', 'relative').css('right', offsetRight + 'px')
     }
